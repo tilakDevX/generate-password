@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Col, InputNumber, Row, Slider, Space } from "antd";
+import { Col, InputNumber, Row, Slider, Space, Typography } from "antd";
 const SliderInput = ({ inputValue, setInputValue }) => {
   const onChange = (newValue) => {
     console.log(newValue, "newValue")
     setInputValue(newValue);
   };
   return (
-    <Row>
+    <Row style={{justifyContent:"space-between"}}>
       <Col span={12}>
         <Slider
           min={1}
@@ -14,6 +14,9 @@ const SliderInput = ({ inputValue, setInputValue }) => {
           onChange={onChange}
           value={typeof inputValue === "number" ? inputValue : 0}
         />
+      </Col>
+      <Col>
+        <Typography>Increase Length Of Character</Typography>
       </Col>
       <Col span={4}>
         <InputNumber
