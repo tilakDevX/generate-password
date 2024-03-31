@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { Alert, Button, Card, Image, Typography, message } from "antd";
+import { Row, Col, Button, Typography, message } from "antd";
 import SliderInput from "./copmonents/SliderInput";
 import CheckBoxs from "./copmonents/CheckBoxs";
 import img from "../src/assets/generate-pass.jpg";
@@ -11,20 +10,15 @@ function App() {
   const [generatedPassword, setGeneratedPassword] = useState("");
   const [passwordStrength, setPasswordStrength] = useState("Poor");
 
-
   const generatePassword = () => {
     // Check if no option is selected
     if (includeOptions.length === 0) {
-      // toast.error("Please select at least one option.");
       message.error('Please select at least one option.');
     } else if (inputValue < 4) {
-      // toast.error("Password length cannot be less than 4 characters.");
       message.error("Password length cannot be less than 4 characters.");
     } else {
-      // Call a separate function to generate the password
       generatePasswordLogic();
       message.success('Password Generated Successfully!!!😆');
-
     }
   };
 
@@ -50,7 +44,6 @@ function App() {
     setGeneratedPassword(password);
 
     // Calculate password strength (you can implement your own algorithm for this)
-    // For demonstration purpose, let's just check the length
     if (password.length < 6) {
       setPasswordStrength("Poor");
     } else if (password.length < 10) {
@@ -59,96 +52,43 @@ function App() {
       setPasswordStrength("Strong");
     }
   };
- 
+
   return (
-    <>
-      <div style={{ display: "flex", paddingTop: "30px", gap: "25px" }}>
-        <div style={{ width: "50%" }}>
-          <Image
-            src={img}
-            alt="generate-pass-img"
-            width={"100%"}
-            height={"90vh"}
-            style={{ borderRadius: "10px" }}
-          />
-        </div>
-        <div
-          style={{
-            width: "50%",
-            height: "45vh",
-            background: "#EEEEEE",
-            display: "flex",
-            flexDirection: "column",
-            gap: "30px",
-            padding: "20px",
-            borderRadius: "10px",
-            margin: "auto",
-          }}
-        >
-          <Typography
-            style={{
-              textAlign: "center",
-              fontWeight: "600",
-              fontSize: "25px",
-              letterSpacing: "5px",
-            }}
-          >
-            Generate-Password
-          </Typography>
-          <div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography style={{ fontSize: "20px", fontFamily: "ubuntu" }}>
-                {generatedPassword ? generatedPassword : "YourPassword"}
-              </Typography>
-              <Button
-                onClick={() => {
-                  navigator.clipboard.writeText(generatedPassword)
-                  message.success('Copied!!!😆');
+    <div style={{ padding: "20px"  }}>
+      <Row justify="center" gutter={[16, 16]}  >
+        <Col xs={24} sm={12} md={10} lg={8} style={{ }} >
+          <img src={img} alt="generate-pass-img" style={{ width: "100%", borderRadius:"10px"}} />
+        </Col>
+        <Col xs={24} sm={12} md={14} lg={16} style={{ background: "#EEEEEE", alignItems:"center", padding:"20px", maxWidth:"500px",borderRadius:"10px" }}>
+          <Typography.Title level={3} style={{ textAlign: "center", marginBottom: "20px" }}>Generate Password</Typography.Title>
+          <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
 
-                }}
-              >
-                Copy
-              </Button>
+          <Typography.Text style={{ fontSize: "20px", fontFamily: "ubuntu" }}>
+            {generatedPassword ? generatedPassword : "Your Password"}
+          </Typography.Text>
+          <Button type="primary" onClick={() => {
+            navigator.clipboard.writeText(generatedPassword)
+            message.success("Copied!!!😺")
+          }} style={{ marginLeft: "10px" }}>
+            Copy
+          </Button>
             </div>
-          </div>
-          <div>
-            <SliderInput
-              setInputValue={setInputValue}
-              inputValue={inputValue}
-            />
-          </div>
-          <div>
-            <CheckBoxs
-              includeOptions={includeOptions}
-              setIncludeOptions={setIncludeOptions}
-            />
-          </div>
-
-          <div>
-            <Typography
-              style={{ fontSize: "14px", margin: "10px", marginLeft: "0" }}
-            >
-              The Strength Of The Password is{" "}
-              <Typography.Text
-                type={
-                  passwordStrength === "Poor"
-                    ? "danger"
-                    : passwordStrength === "Medium"
-                    ? "warning"
-                    : passwordStrength === "Strong"
-                    ? "success"
-                    : ""
-                }
-              >
-                {passwordStrength}.
-              </Typography.Text>
-            </Typography>
-            <Button onClick={generatePassword}>Generate Password</Button>
-             
-          </div>
-        </div>
-      </div>
-    </>
+          <SliderInput setInputValue={setInputValue} inputValue={inputValue} />
+          <CheckBoxs includeOptions={includeOptions} setIncludeOptions={setIncludeOptions} />
+          <br />
+          <Typography.Text>
+            The Strength Of The Password is{" "}
+            <Typography.Text type={passwordStrength === "Poor" ? "danger" : passwordStrength === "Medium" ? "warning" : "success"}>
+              {passwordStrength}.
+            </Typography.Text>
+          </Typography.Text>
+          <br />
+          <Button type="primary" onClick={generatePassword} style={{ marginTop: "10px" }}>
+            Generate Password
+          </Button>
+        </Col>
+      </Row>
+    </div>
   );
 }
 

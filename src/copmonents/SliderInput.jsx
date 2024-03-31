@@ -1,36 +1,23 @@
-import React, { useState } from "react";
-import { Col, InputNumber, Row, Slider, Space, Typography } from "antd";
-const SliderInput = ({ inputValue, setInputValue }) => {
-  const onChange = (newValue) => {
-    console.log(newValue, "newValue")
-    setInputValue(newValue);
+import { Row, Col, Slider, InputNumber, Typography } from "antd";
+
+function SliderInput({ inputValue, setInputValue }) {
+  const onChange = (value) => {
+    setInputValue(value);
   };
+
   return (
-    <Row style={{justifyContent:"space-between"}}>
-      <Col span={12}>
-        <Slider
-          min={1}
-          max={20}
-          onChange={onChange}
-          value={typeof inputValue === "number" ? inputValue : 0}
-        />
+    <Row gutter={[16, 16]}>
+      <Col span={16}>
+        <Slider min={4} max={20} onChange={onChange} value={inputValue} />
       </Col>
-      <Col>
-        <Typography>Increase Length Of Character</Typography>
+      <Col span={24}>
+        <Typography.Text>Increase Length Of Character</Typography.Text>
       </Col>
-      <Col span={4}>
-        <InputNumber
-          min={4}
-          max={20}
-          style={{
-            margin: "0 16px",
-          }}
-          value={inputValue}
-          onChange={onChange}
-        />
+      <Col span={8}>
+        <InputNumber min={4} max={20} style={{ width: "50%" }} value={inputValue} onChange={onChange} />
       </Col>
     </Row>
   );
-};
+}
 
 export default SliderInput;
