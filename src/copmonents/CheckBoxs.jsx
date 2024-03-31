@@ -1,36 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "antd";
 
-const onChange = (checkedValues) => {
-  console.log("checked = ", checkedValues);
-};
-const options = [
-  {
-    label: "Include Uppercase Letters",
-    value: "Include Uppercase Letters",
-  },
-  {
-    label: "Include Lowercase Letters",
-    value: "Include Lowercase Letters",
-  },
-  {
-    label: "Include Numbers",
-    value: "Include Numbers",
-  },
-  {
-    label: "Include Symbols",
-    value: "Include Symbols",
-  },
-];
+const CheckBoxs = ({ includeOptions, setIncludeOptions }) => {
+  const onChange = (checkedValues) => {
+    setIncludeOptions(checkedValues);
+  };
 
-const CheckBoxs = () => (
-  <>
-    <Checkbox.Group
-      options={options}
-      defaultValue={["Include Uppercase Letters"]}
-      onChange={onChange}
-      style={{color:"white"}}
-    />
-  </>
-);
+  const options = [
+    {
+      label: "Include Uppercase Letters",
+      value: "Include Uppercase Letters",
+    },
+    {
+      label: "Include Lowercase Letters",
+      value: "Include Lowercase Letters",
+    },
+    {
+      label: "Include Numbers",
+      value: "Include Numbers",
+    },
+    {
+      label: "Include Symbols",
+      value: "Include Symbols",
+    },
+  ];
+
+  return (
+    <>
+      <Checkbox.Group
+        options={options}
+        value={includeOptions}
+        onChange={onChange}
+        style={{ color: "white" }}
+      />
+    </>
+  );
+};
+
 export default CheckBoxs;
