@@ -1,0 +1,23 @@
+/* CheckBoxs.css */
+.custom-checkbox-group .ant-checkbox-wrapper {
+    color: white !important; /* Set the text color of the checkboxes */
+  }
+  
+  .custom-checkbox-group .ant-checkbox-inner {
+    background-color: white !important; /* Set the background color of the checkboxes */
+    border-color: white !important; /* Set the border color of the checkboxes */
+  }
+  
+  .custom-checkbox-group .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: white !important; /* Set the background color of checked checkboxes */
+    border-color: white !important; /* Set the border color of checked checkboxes */
+  }
+  
+  .custom-checkbox-group .ant-checkbox-checked .ant-checkbox-inner::after {
+    border-color: white !important; /* Set the checkmark color of checked checkboxes */
+  }
+  
+  .custom-checkbox-group .ant-checkbox-wrapper + span {
+    color: white !important; /* Set the text color of the labels */
+  }
+  

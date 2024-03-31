@@ -29,6 +29,7 @@ const CheckBoxs = () => (
       options={options}
       defaultValue={["Include Uppercase Letters"]}
       onChange={onChange}
+      style={{color:"white"}}
     />
   </>
 );

@@ -6,6 +6,8 @@ import img from "../src/assets/generate-pass.jpg";
 
 function App() {
   const [inputValue, setInputValue] = useState(4);
+
+  const textStyling = { fontSize: "20px", fontFamily: "ubuntu" };
   return (
     <>
       <div style={{ display: "flex", paddingTop: "30px", gap: "25px" }}>
@@ -18,7 +20,19 @@ function App() {
             style={{ borderRadius: "10px" }}
           />
         </div>
-        <Card style={{ width: "50%" }}>
+        <div
+          style={{
+            width: "50%",
+            height: "45vh",
+            background: "#EEEEEE",
+            display: "flex",
+            flexDirection: "column",
+            gap: "30px",
+            padding: "20px",
+            borderRadius: "10px",
+            margin: "auto",
+          }}
+        >
           <Typography
             style={{
               textAlign: "center",
@@ -29,28 +43,29 @@ function App() {
           >
             Generate-Password
           </Typography>
-          <Card>
+          <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography>pad2ere3</Typography>
+              <Typography style={textStyling}>pad2ere3</Typography>
               <Button>Copy</Button>
             </div>
-          </Card>
-          <Card>
+          </div>
+          <div>
             <SliderInput
               setInputValue={setInputValue}
               inputValue={inputValue}
             />
-          </Card>
-          <Card>
+          </div>
+          <div>
             <CheckBoxs />
-          </Card>
+          </div>
 
-          <Typography>Stregnth: {"Poor"}</Typography>
-
-          <Card>
+          <div>
+            <Typography style={{ fontSize: "14px" , margin:"10px", marginLeft:"0"}}>
+              The Stregnth Of The Password is {"Poor"}.
+            </Typography>
             <Button>Generate Password</Button>
-          </Card>
-        </Card>
+          </div>
+        </div>
       </div>
     </>
   );
